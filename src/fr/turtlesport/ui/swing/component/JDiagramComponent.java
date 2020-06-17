@@ -1815,8 +1815,18 @@ public class JDiagramComponent extends JPanel implements LanguageListener,
 
       // courbe 4
       for (int i = 0; i < points.size(); i++) {
-        pointsFilter[i].setCadence(points.get(i).getCadence());
+        y[i] = points.get(i).getCadence();
       }
+      yFilter = SavitzkyGolay.filter(y);
+      for (int i = 0; i < points.size(); i++) {
+        if (yFilter[i] < 0) {
+          yFilter[i] = 0;
+        }
+        pointsFilter[i].setCadence((int)yFilter[i]);
+      }
+//      for (int i = 0; i < points.size(); i++) {
+//        pointsFilter[i].setCadence(points.get(i).getCadence());
+//      }
 
     }
 

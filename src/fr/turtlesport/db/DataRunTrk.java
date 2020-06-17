@@ -154,6 +154,7 @@ public class DataRunTrk implements Cloneable {
    * @return the cadence
    */
   public int getCadence() {
+    if (cadence == 0xFF) return 0;
     return cadence;
   }
 
